@@ -20,4 +20,7 @@
 　Docker Desktop Installer.exeをダウンロードし、起動
   
   WSL2 installation is in completeが表示されたら、リンクを踏み、x64マシン用WSL2　Linuxカーネル更新プログラムパッケージをダウンロードし、起動
+  
+  DockerのPATHを通す
+  vscodeでdevcontainerをインストール
 
