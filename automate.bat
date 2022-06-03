@@ -1,5 +1,5 @@
 @echo off
-cd C:\github\c-env
+cd C:\c-env
 
 start "" "Docker Desktop.exe"
 
@@ -16,40 +16,40 @@ if %errorlevel% == 0 (
 
 call :runContainer %containerName%
 
-@rem@‰‰ñ‹N“®ƒ`ƒFƒbƒN
+@remã€€åˆå›èµ·å‹•ãƒã‚§ãƒƒã‚¯
 call :isExistsContainer %containerName%
 if %errorlevel%==-1 (
-    @rem ƒRƒ“ƒeƒi‚ª‚È‚¢
-    echo ƒRƒ“ƒeƒi‚ğƒrƒ‹ƒh‚µ‚Ä‚¢‚Ü‚·
+    @rem ã‚³ãƒ³ãƒ†ãƒŠãŒãªã„
+    echo ã‚³ãƒ³ãƒ†ãƒŠã‚’ãƒ“ãƒ«ãƒ‰ã—ã¦ã„ã¾ã™
     docker-compose up -d --build
     goto checkStatus
 )
 
-@rem@‹N“®Ï‚İƒ`ƒFƒbƒN
+@remã€€èµ·å‹•æ¸ˆã¿ãƒã‚§ãƒƒã‚¯
 call :isRunningContainer %containerName%
 if %errorlevel%==-1 (
-    @rem ‹N“®‚µ‚Ä‚¢‚È‚¢
-    echo ƒRƒ“ƒeƒi‚ğ‹N“®‚µ‚Ä‚¢‚Ü‚·
+    @rem èµ·å‹•ã—ã¦ã„ãªã„
+    echo ã‚³ãƒ³ãƒ†ãƒŠã‚’èµ·å‹•ã—ã¦ã„ã¾ã™
     docker-compose start
     goto checkStatus
 )
 
 :checkStatus
-@rem@¬Œ÷‚µ‚½‚©ó‘ÔŠm”F
+@remã€€æˆåŠŸã—ãŸã‹çŠ¶æ…‹ç¢ºèª
 call :isExistsContainer %containerName%
 if %errorlevel%==-1 (
-    echo ƒRƒ“ƒeƒi‚ª‚ ‚è‚Ü‚¹‚ñ
+    echo ã‚³ãƒ³ãƒ†ãƒŠãŒã‚ã‚Šã¾ã›ã‚“
     goto exitRunning
 )
 call :isRunningContainer %containerName%
 if %errorlevel%==-1 (
-    echo ƒRƒ“ƒeƒi‚Ì‹N“®‚É¸”s‚µ‚Ü‚µ‚½
+    echo ã‚³ãƒ³ãƒ†ãƒŠã®èµ·å‹•ã«å¤±æ•—ã—ã¾ã—ãŸ
     goto exitRunning
 )
-echo ¬Œ÷‚µ‚Ü‚µ‚½B
+echo æˆåŠŸã—ã¾ã—ãŸã€‚
 devcontainer open
 
-@rem ƒRƒ“ƒeƒi‚Ì‘¶İ‚ğŠm”F‚·‚é
+@rem ã‚³ãƒ³ãƒ†ãƒŠã®å­˜åœ¨ã‚’ç¢ºèªã™ã‚‹
 :isExistsContainer
 set containerName=c-env
 set isExistsContainer=NOT_EXIST
@@ -61,9 +61,9 @@ if %isExistsContainer%==NOT_EXIST (
     exit /b -1
 )
 exit /b 0
-@rem –ß‚è’l 0:‘¶İ‚·‚é -1:‘¶İ‚µ‚È‚¢
+@rem æˆ»ã‚Šå€¤ 0:å­˜åœ¨ã™ã‚‹ -1:å­˜åœ¨ã—ãªã„
 
-@rem ƒRƒ“ƒeƒi‚Ì‹N“®ó‘Ô‚ğŠm”F‚·‚é
+@rem ã‚³ãƒ³ãƒ†ãƒŠã®èµ·å‹•çŠ¶æ…‹ã‚’ç¢ºèªã™ã‚‹
 :isRunningContainer
 set containerName=c-env
 set isRunningContainer=NOT_RUNNING
@@ -74,23 +74,23 @@ if %isRunningContainer%==NOT_RUNNING (
     exit /b -1
 )
 exit /b 0
-@rem –ß‚è’l 0:‹N“®’† -1:‹N“®‚µ‚Ä‚¢‚È‚¢
+@rem æˆ»ã‚Šå€¤ 0:èµ·å‹•ä¸­ -1:èµ·å‹•ã—ã¦ã„ãªã„
 
-@rem ƒRƒ“ƒeƒi€”õ
+@rem ã‚³ãƒ³ãƒ†ãƒŠæº–å‚™
 :runContainer
 set containerName=c-env
-echo %containerName%ƒRƒ“ƒeƒi‚Ì€”õ‚ğ‚µ‚Ä‚¢‚Ü‚·
+echo %containerName%ã‚³ãƒ³ãƒ†ãƒŠã®æº–å‚™ã‚’ã—ã¦ã„ã¾ã™
 cd %conteinerName%
 if not exist docker-compose.yml (
-    echo %containerName%ƒtƒHƒ‹ƒ_“à‚Édocker-compose.yml‚ªŒ©‚Â‚©‚è‚Ü‚¹‚ñ‚Å‚µ‚½
+    echo %containerName%ãƒ•ã‚©ãƒ«ãƒ€å†…ã«docker-compose.ymlãŒè¦‹ã¤ã‹ã‚Šã¾ã›ã‚“ã§ã—ãŸ
     goto exitRunning
 )
 exit /b 0
 
 :exitRunning
-echo ‹N“®ˆ—‚É¸”s‚µ‚Ü‚µ‚½
+echo èµ·å‹•å‡¦ç†ã«å¤±æ•—ã—ã¾ã—ãŸ
 exit /b -1
-@rem I‚í‚è
+@rem çµ‚ã‚ã‚Š
 
 
 
