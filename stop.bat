@@ -1,0 +1,1 @@
+taskkill /F /IM "Docker Desktop.exe" /T

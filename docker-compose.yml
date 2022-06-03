@@ -2,6 +2,7 @@ version: '3'
 services:
   dev:
     build: .
+    container_name: c-env
     volumes:
       - ./src:/c-dev
     tty: true

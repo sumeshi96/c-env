@@ -1,0 +1,15 @@
+{
+	"dockerComposeFile": [
+		"../docker-compose.yml",
+		"docker-compose.yml"
+	],
+	"service": "dev",
+	"workspaceFolder": "../c-dev",
+	"extensions": [
+		"MS-CEINTL.vscode-language-pack-ja",
+		"ms-vscode.cpptools-themes",
+		"ms-vscode.cpptools-extension-pack",
+		"ms-vscode.cpptools",
+		"formulahendry.code-runner"
+	]
+}
