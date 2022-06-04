@@ -16,40 +16,40 @@ if %errorlevel% == 0 (
 
 call :runContainer %containerName%
 
-@rem　初回起動チェック
+@rem　initialization
 call :isExistsContainer %containerName%
 if %errorlevel%==-1 (
-    @rem コンテナがない
-    echo コンテナをビルドしています
+    @rem No contaienr
+    echo building container...
     docker-compose up -d --build
     goto checkStatus
 )
 
-@rem　起動済みチェック
+@rem　activated check
 call :isRunningContainer %containerName%
 if %errorlevel%==-1 (
-    @rem 起動していない
-    echo コンテナを起動しています
+    @rem No activated
+    echo Starting containers...
     docker-compose start
     goto checkStatus
 )
 
 :checkStatus
-@rem　成功したか状態確認
+@rem　status checking...
 call :isExistsContainer %containerName%
 if %errorlevel%==-1 (
-    echo コンテナがありません
+    echo No contaienr
     goto exitRunning
 )
 call :isRunningContainer %containerName%
 if %errorlevel%==-1 (
-    echo コンテナの起動に失敗しました
+    echo Failed to start container...
     goto exitRunning
 )
-echo 成功しました。
+echo Success...
 devcontainer open
 
-@rem コンテナの存在を確認する
+@rem checking exists container...
 :isExistsContainer
 set containerName=c-env
 set isExistsContainer=NOT_EXIST
@@ -61,9 +61,8 @@ if %isExistsContainer%==NOT_EXIST (
     exit /b -1
 )
 exit /b 0
-@rem 戻り値 0:存在する -1:存在しない
 
-@rem コンテナの起動状態を確認する
+@rem checking starting container
 :isRunningContainer
 set containerName=c-env
 set isRunningContainer=NOT_RUNNING
@@ -74,23 +73,21 @@ if %isRunningContainer%==NOT_RUNNING (
     exit /b -1
 )
 exit /b 0
-@rem 戻り値 0:起動中 -1:起動していない
 
-@rem コンテナ準備
+@rem Preparing contaienr
 :runContainer
 set containerName=c-env
-echo %containerName%コンテナの準備をしています
+echo Preparing %containerName% container...
 cd %conteinerName%
 if not exist docker-compose.yml (
-    echo %containerName%フォルダ内にdocker-compose.ymlが見つかりませんでした
+    echo Not found docker-compose.yml
     goto exitRunning
 )
 exit /b 0
 
 :exitRunning
-echo 起動処理に失敗しました
+echo Failed to start container...
 exit /b -1
-@rem 終わり
 
 
 
