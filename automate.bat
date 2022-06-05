@@ -16,7 +16,7 @@ if %errorlevel% == 0 (
 
 call :runContainer %containerName%
 
-@rem　initialization
+@rem initialization
 call :isExistsContainer %containerName%
 if %errorlevel%==-1 (
     @rem No contaienr
@@ -25,7 +25,7 @@ if %errorlevel%==-1 (
     goto checkStatus
 )
 
-@rem　activated check
+@rem activated check
 call :isRunningContainer %containerName%
 if %errorlevel%==-1 (
     @rem No activated
@@ -33,9 +33,13 @@ if %errorlevel%==-1 (
     docker-compose start
     goto checkStatus
 )
+echo finish!
+exit
 
+@rem <--------------------subrutin-------------------->  
+
+@rem status check
 :checkStatus
-@rem　status checking...
 call :isExistsContainer %containerName%
 if %errorlevel%==-1 (
     echo No contaienr
@@ -88,7 +92,3 @@ exit /b 0
 :exitRunning
 echo Failed to start container...
 exit /b -1
-
-
-
-exit
