@@ -4,6 +4,7 @@ cd C:\c-env
 start "" "Docker Desktop.exe"
 
 echo starting docker...
+echo wait for about 30 minites
 
 ping 127.0.0.1 -n 30>nul
 
